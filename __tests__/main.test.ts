@@ -19,6 +19,9 @@ test('test runs', () => {
   process.env['INPUT_BDS_VERSION'] = '1.19.50.25'
   process.env['INPUT_BDS_CHANNEL'] = 'preview'
 
+  process.env['INPUT_EULA_ACCEPT'] = 'true'
+  process.env['INPUT_PP_ACCEPT'] = 'true'
+
   const np = process.execPath
   const ip = path.join(__dirname, '..', 'lib', 'main.js')
   const options: cp.ExecFileSyncOptions = {

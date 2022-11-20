@@ -58,6 +58,14 @@ function run() {
                     }
                     ;
             }
+            const EULA_ACCEPT = core.getInput('EULA_ACCEPT');
+            const PP_ACCEPT = core.getInput('PP_ACCEPT');
+            if (EULA_ACCEPT !== "true") {
+                throw new Error(`Accept the EULA before continuing`);
+            }
+            if (PP_ACCEPT !== "true") {
+                throw new Error(`Accept the Privacy Policy before continuing`);
+            }
             let BDS_VERSION = core.getInput('BDS_VERSION');
             const BDS_CHANNEL = core.getInput('BDS_CHANNEL');
             if (BDS_VERSION === undefined || BDS_VERSION === "") {
