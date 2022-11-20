@@ -3,7 +3,7 @@
 This action allows you to setup a BDS server. Here's an example workflow:
 
 ```yml
-name: 'build-test'
+name: 'setup-bds'
 on:
   push:
     branches:
@@ -13,7 +13,7 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
-      - uses: ./
+      - uses: setup-bds@v1
         with:
           # For these two options, see https://github.com/Bedrock-OSS/BDS-Versions/blob/main/versions.json
           BDS_VERSION: latest # This is an alias for the most up to date version, you can use exact versions
