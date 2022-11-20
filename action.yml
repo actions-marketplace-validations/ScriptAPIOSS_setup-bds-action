@@ -1,0 +1,15 @@
+name: 'setup-bds'
+description: 'An action to download and setup minecraft bds for testing environments'
+author: 'ScriptAPIOSS'
+inputs:
+  BDS_VERSION:
+    required: true
+    description: 'The version of BDS to download. `latest` also accepted.'
+    default: 'latest'
+  BDS_CHANNEL:
+    required: true
+    description: 'The channel to download BDS from, `stable/preview`'
+    default: 'preview'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
