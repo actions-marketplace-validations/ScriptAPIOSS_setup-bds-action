@@ -42,52 +42,44 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
 const tc = __importStar(__nccwpck_require__(7784));
 const http = __importStar(__nccwpck_require__(6255));
-const VERSIONS_URL = "https://raw.githubusercontent.com/Bedrock-OSS/BDS-Versions/main/versions.json";
+const VERSIONS_URL = 'https://raw.githubusercontent.com/Bedrock-OSS/BDS-Versions/main/versions.json';
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             switch (process.platform) {
-                case "win32":
-                    {
-                        throw new Error("Unsupported platform: ${process.platform}");
-                    }
-                    ;
-                case "darwin":
-                    {
-                        throw new Error("Unsupported platform: ${process.platform}");
-                    }
-                    ;
+                case 'win32': {
+                    throw new Error('Unsupported platform: ${process.platform}');
+                }
+                case 'darwin': {
+                    throw new Error('Unsupported platform: ${process.platform}');
+                }
             }
             const EULA_ACCEPT = core.getInput('EULA_ACCEPT');
             const PP_ACCEPT = core.getInput('PP_ACCEPT');
-            if (EULA_ACCEPT !== "true") {
+            if (EULA_ACCEPT !== 'true') {
                 throw new Error(`Accept the EULA before continuing`);
             }
-            if (PP_ACCEPT !== "true") {
+            if (PP_ACCEPT !== 'true') {
                 throw new Error(`Accept the Privacy Policy before continuing`);
             }
             let BDS_VERSION = core.getInput('BDS_VERSION');
             const BDS_CHANNEL = core.getInput('BDS_CHANNEL');
-            if (BDS_VERSION === undefined || BDS_VERSION === "") {
-                BDS_VERSION = "latest";
+            if (BDS_VERSION === undefined || BDS_VERSION === '') {
+                BDS_VERSION = 'latest';
             }
-            const USE_LATEST = BDS_VERSION === "latest";
-            const USE_PREVIEW = BDS_CHANNEL === "preview";
+            const USE_LATEST = BDS_VERSION === 'latest';
+            const USE_PREVIEW = BDS_CHANNEL === 'preview';
             if (USE_LATEST) {
-                core.debug("Using latest");
+                core.debug('Using latest');
             }
             // Validate channel
             switch (BDS_CHANNEL) {
-                case "stable":
-                    {
-                        break;
-                    }
-                    ;
-                case "preview":
-                    {
-                        break;
-                    }
-                    ;
+                case 'stable': {
+                    break;
+                }
+                case 'preview': {
+                    break;
+                }
                 default: {
                     throw new Error(`Invalid BDS_CHANNEL: ${BDS_CHANNEL}`);
                 }
@@ -123,9 +115,9 @@ function run() {
                 }
             }
             core.debug(`Downloading bds version ${target_version} on channel ${BDS_CHANNEL}`);
-            let version_url = "https://raw.githubusercontent.com/Bedrock-OSS/BDS-Versions/main/linux";
+            let version_url = 'https://raw.githubusercontent.com/Bedrock-OSS/BDS-Versions/main/linux';
             if (USE_PREVIEW) {
-                version_url += "_preview";
+                version_url += '_preview';
             }
             version_url += `/${target_version}.json`;
             const version_manifest_response = yield _http.get(version_url);
@@ -138,7 +130,7 @@ function run() {
             const bdsExtractedPath = yield tc.extractZip(bds_zip, './bds');
             const bdsCachedPath = yield tc.cacheDir(bdsExtractedPath, 'bds', target_version);
             core.addPath(bdsCachedPath);
-            core.summary.addHeading("Test summary");
+            core.summary.addHeading('Test summary');
         }
         catch (error) {
             if (error instanceof Error)
