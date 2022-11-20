@@ -2,6 +2,14 @@ name: 'setup-bds'
 description: 'An action to download and setup minecraft bds for testing environments'
 author: 'ScriptAPIOSS'
 inputs:
+  EULA_ACCEPT:
+    required: true
+    description: 'Do you accept the EULA - https://minecraft.net/terms'
+    default: 'false'
+  PP_ACCEPT:
+    required: true
+    description: 'Do you accept the Privacy Policy - https://go.microsoft.com/fwlink/?LinkId=521839'
+    default: 'false'
   BDS_VERSION:
     required: true
     description: 'The version of BDS to download. `latest` also accepted.'

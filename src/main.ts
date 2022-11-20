@@ -8,10 +8,20 @@ const VERSIONS_URL = "https://raw.githubusercontent.com/Bedrock-OSS/BDS-Versions
 
 async function run(): Promise<void> {
   try {
-
     switch (process.platform) {
       case "win32": { throw new Error("Unsupported platform: ${process.platform}") };
       case "darwin": { throw new Error("Unsupported platform: ${process.platform}") };
+    }
+
+    const EULA_ACCEPT: string = core.getInput('EULA_ACCEPT');
+    const PP_ACCEPT: string = core.getInput('PP_ACCEPT');
+
+    if (EULA_ACCEPT !== "true") {
+      throw new Error(`Accept the EULA before continuing`);
+    }
+
+    if (PP_ACCEPT !== "true") {
+      throw new Error(`Accept the Privacy Policy before continuing`);
     }
 
     let BDS_VERSION: string = core.getInput('BDS_VERSION');
@@ -25,7 +35,7 @@ async function run(): Promise<void> {
     const USE_PREVIEW = BDS_CHANNEL === "preview";
 
     if (USE_LATEST) {
-      core.debug("Using latest")
+      core.debug("Using latest");
     }
 
     // Validate channel
