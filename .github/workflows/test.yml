@@ -23,3 +23,5 @@ jobs:
         with:
           BDS_VERSION: latest
           BDS_CHANNEL: preview
+          EULA_ACCEPT: true
+          PP_ACCEPT: true
